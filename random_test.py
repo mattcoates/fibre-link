@@ -38,9 +38,8 @@ with open(filepath) as fp:
     for k in range(1,9):
     
         # Test Sequences of Length k
-        num = np.floor(n/k)
         freq = np.zeros(k+1)
-        for i in range(0, n, k):            
+        for i in range(0, n):            
             
             # Read Sequence of Length k
             tmp = bit_stream[i:i+k]
@@ -59,10 +58,10 @@ with open(filepath) as fp:
             p[j] = comb(k,j)*np.power(0.5,k)
         
         # Generate Measured Dist
-        prob = freq/num
+        prob = freq/np.sum(freq)
         
         # Output Results of Test
-        print("Length", k, "Sequences:   [Analysed ", int(num*k), "bits]")
+        print("Length", k, "Sequences:")
         print("Freq -", freq)
         print("Prob -", prob)
         print("Actual - ", p)
