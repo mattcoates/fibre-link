@@ -12,11 +12,12 @@ def percent_diff(est, act):
         return 0
 
 # File Path
-if len(sys.argv) != 2:
-    print("Usage: {} /file.txt".format(sys.argv[0]))
+if len(sys.argv) != 3:
+    print("Usage: {} /file.txt max_len".format(sys.argv[0]))
     sys.exit(1)
 
 filepath = sys.argv[1]
+max_len = sys.argv[2]
 
 if not os.path.isfile(filepath):
     print("File path {} does not exist. Exiting...".format(filepath))
@@ -35,7 +36,7 @@ with open(filepath) as fp:
     print( n, " Bits Loaded")
     print("")
     
-    for k in range(1,9):
+    for k in range(1,int(max_len)+1):
     
         # Test Sequences of Length k
         freq = np.zeros(k+1)
