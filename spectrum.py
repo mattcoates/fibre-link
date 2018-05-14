@@ -37,4 +37,6 @@ with open(filepath) as fp:
     t = np.arange(n)
     freq = np.fft.fftfreq(t.shape[-1])
     ax.plot(freq, spectrum)
+    plt.xlabel('Normalised Frequency')
+    plt.title('FFT of Pseudo-Random Bit Stream')
     plt.show()
