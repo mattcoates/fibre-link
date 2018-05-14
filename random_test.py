@@ -1,6 +1,7 @@
 import sys  
 import os
 import numpy as np
+import matplotlib.pyplot as plt
 from scipy.special import comb
 np.set_printoptions(precision=5)
 
@@ -68,3 +69,4 @@ with open(filepath) as fp:
         print("Actual - ", p)
         print("% Diff - ", percent_diff(prob, p))
         print("")
+            
