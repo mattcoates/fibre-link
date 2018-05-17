@@ -1,7 +1,13 @@
+#include <SevSeg.h>
+
+SevSeg sevseg;
+
 /* Pin Definitions */
 #define clk_pin   7
 #define data_pin  8
-#define trigger   10
+
+int count = 0;
+unsigned long previousMillis;
 
 /* State Machine Definitions */
 typedef enum {
@@ -38,17 +44,31 @@ void setup() {
   /* Setup Interrupt */
   pinMode(clk_pin, INPUT); 
   pinMode(data_pin, INPUT); 
-  pinMode(trigger, OUTPUT); 
 
   attachInterrupt(digitalPinToInterrupt(clk_pin), tick, FALLING);
+
+  /* Setup Display */
+  byte numDigits = 4;   
+  byte digitPins[] = {10,16,14,15}; // 1,2,3,4
+  byte segmentPins[] = {18, 19, 20, 21, 3, 2, 4, 5}; // A,B,C,D,E,F,G,Period
+
+  sevseg.begin(COMMON_CATHODE, numDigits, digitPins, segmentPins);
+  sevseg.setBrightness(10);
   
 }
 
 
 /* Main Loop */
 void loop() {
+  
+  sevseg.setNumber(count, 0);
+  count = 0;
+  previousMillis = millis();
+  while (millis() - previousMillis < 1000){
+      sevseg.refreshDisplay();
+  }
 
-
+  
 }
 
 /* Clock ISR - Falling Edge */
@@ -62,8 +82,6 @@ void tick(){
 
 /* State 0 */
 static state_t do_state_a(void){
-
-    digitalWrite(trigger, LOW);
     
     if(digitalRead(data_pin)){
       return STATE_B;
@@ -75,8 +93,6 @@ static state_t do_state_a(void){
 /* State 1 */
 static state_t do_state_b(void){
 
-    digitalWrite(trigger, LOW);
-  
     if(digitalRead(data_pin)){
       return STATE_B;
     } else {
@@ -108,7 +124,7 @@ static state_t do_state_d(void){
 /* State 1001 */
 static state_t do_state_e(void){
      
-    digitalWrite(trigger, HIGH);
+    count = count + 1;
     
     if(digitalRead(data_pin)){
       return STATE_B;
