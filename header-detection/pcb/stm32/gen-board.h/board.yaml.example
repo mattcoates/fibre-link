@@ -1,0 +1,11 @@
+name: MyAwesomeBoard V1.0
+lsefreq: 0
+hsefreq: 0
+voltage: 3.3
+mcutype: STM32F405xx
+default: input, pushpull, starthigh, pullup, highspeed
+pins:
+    test: pa0
+    fx_1: pa2, analog, floating
+    fx_2: pa5, analog, floating
+    rst: pb7, output, opendrain
