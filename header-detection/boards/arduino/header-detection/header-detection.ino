@@ -62,6 +62,7 @@ void setup() {
 void loop() {
   
   sevseg.setNumber(count, 0);
+  Serial.println(count);
   count = 0;
   previousMillis = millis();
   while (millis() - previousMillis < 1000){
