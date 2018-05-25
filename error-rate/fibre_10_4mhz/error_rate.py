@@ -26,7 +26,7 @@ error = 0
 with open(rxpath) as rx:
     with open(txpath) as tx:
 
-        gbg = rx.read(1)
+        gbg = rx.read(2)
 
         # Loop Over Stream
         while True:
