@@ -2,17 +2,17 @@
 
 This repository contains the results and scripts used for the testing of our optical fibre link.
 
-##Clock Recovery
+## Clock Recovery
 Scripts and results of the tests carried out on the FPGA that was performing clock recovery.
 
-##Error Rate
+## Error Rate
 Testing of the BER of the complete link.
 
-##Header Detection
+## Header Detection
 Scripts and results of the tests on the header detector.
 
-##Image Testing
+## Image Testing
 Results of using the link to transmit an image at different frequencies. 
 
-##PRBS
+## PRBS
 Characterisation of a pseudo-random number generator used to generate dummy data to test the link.
